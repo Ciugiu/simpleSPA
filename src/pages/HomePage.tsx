@@ -1,8 +1,7 @@
-import React from "react";
 import { useState } from "react";
 
 const HomePage = () => {
-  const [product, setProducts] = useState(null);
+  const [product] = useState(null);
 
   return (
     <div>

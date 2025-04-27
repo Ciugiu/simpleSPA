@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { fetchProducts } from "../utils/fetchProducts";
+import CardComponent from "../components/CardComponent";
 
 const HomePage = () => {
   const [product, setProducts] = useState([]);
@@ -26,13 +27,17 @@ const HomePage = () => {
       {loading && <p>Loading...</p>}
       {!product && "No products found"}
       {error && <p>Error loading products: {error}</p>}
-      <ul>
+      <section className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
         {product.map((product: any) => (
-          <li key={product._id}>
-            <h2>{product.name}</h2>
-          </li>
+          <CardComponent
+            key={product._id}
+            title={product.name}
+            description={product.description}
+            price={product.price}
+            imageUrl={product.imageUrl}
+          />
         ))}
-      </ul>
+      </section>
     </div>
   );
 };

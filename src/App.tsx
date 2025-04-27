@@ -2,8 +2,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 // Pages
 import HomePage from "./pages/HomePage";
-import LogIn from "./pages/LogIn";
-import SignUp from "./pages/SignUp";
+import LogInPage from "./pages/LogInPage";
+import SignUpPage from "./pages/SignUpPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import CreateProduct from "./pages/CreateProduct";
 
@@ -22,8 +22,8 @@ const App = () => {
         >
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/login" element={<LogIn />} />
-            <Route path="/signup" element={<SignUp />} />
+            <Route path="/login" element={<LogInPage />} />
+            <Route path="/signup" element={<SignUpPage />} />
             <Route path="/create-product" element={<CreateProduct />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>

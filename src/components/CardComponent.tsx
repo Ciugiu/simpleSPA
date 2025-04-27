@@ -1,9 +1,18 @@
 import PlaceholderImage from "../assets/300x200.jpg";
 
-const cardComponent = (props: any) => {
-  console.log("CardComponent props", props);
-  const { title, description, price, imageUrl } = props;
+interface CardComponentProps {
+  title: string;
+  description: string;
+  price: number;
+  imageUrl: string;
+}
 
+const cardComponent = ({
+  title,
+  description,
+  price,
+  imageUrl,
+}: CardComponentProps) => {
   return (
     <article className="col">
       <div className="card shadow-sm">

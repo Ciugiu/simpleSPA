@@ -20,13 +20,21 @@ const SignUp = () => {
     { name: "email", label: "Email", type: "email", id: "emailInput" },
     { name: "password", label: "Password", type: "password", id: "pwdInput" },
     { name: "role", label: "Role", type: "text", id: "roleInput" },
-    { name: "image", label: "Avatar", type: "file", id: "imageInput" },
+    { name: "image", label: "Avatar", type: "text", id: "imageInput" },
   ];
+
+  const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+
+    // Optional: Add validation logic here if needed
+    console.log("Form submitted:", formData);
+  };
 
   return (
     <form
       className="card shadow-sm p-4 w-100"
       style={{ maxWidth: "480px", margin: "auto" }}
+      onSubmit={handleSubmit}
     >
       <h1 className="text-center">Sign up</h1>
       {fieldConfig.map(({ name, label, type, id }) => (
@@ -42,7 +50,9 @@ const SignUp = () => {
         </div>
       ))}
       <div>
-        <button className="btn btn-primary">Submit</button>
+        <button className="btn btn-primary" type="submit">
+          Submit
+        </button>
       </div>
     </form>
   );

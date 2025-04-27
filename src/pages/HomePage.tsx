@@ -6,6 +6,7 @@ const HomePage = () => {
   const [product, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
     const loadProducts = async () => {
@@ -27,17 +28,19 @@ const HomePage = () => {
       {loading && <p>Loading...</p>}
       {!product && "No products found"}
       {error && <p>Error loading products: {error}</p>}
-      <section className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-        {product.map((product: any) => (
-          <CardComponent
-            key={product._id}
-            title={product.name}
-            description={product.description}
-            price={product.price}
-            imageUrl={product.imageUrl}
-          />
-        ))}
-      </section>
+      {token && (
+        <section className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+          {product.map((product: any) => (
+            <CardComponent
+              key={product._id}
+              title={product.name}
+              description={product.description}
+              price={product.price}
+              imageUrl={product.imageUrl}
+            />
+          ))}
+        </section>
+      )}
     </div>
   );
 };

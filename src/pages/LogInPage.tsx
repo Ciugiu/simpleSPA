@@ -1,10 +1,20 @@
+// Components import
 import LabelComp from "../components/LabelComp";
 import InputForm from "../components/InputForm";
-import { useState } from "react";
-import { checkEmail } from "../utils/checkFormErrors";
 import AlertComp from "../components/AlertComp";
 
+// Utility imports
+import { checkEmail } from "../utils/checkFormErrors";
+
+// React imports
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+// Environment variable import
+const apiUrl = import.meta.env.VITE_API_URL;
+
 const LogIn = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -20,14 +30,16 @@ const LogIn = () => {
     event.preventDefault();
 
     try {
-      if (!checkEmail.checkEmpty(email))
+      if (!checkEmail.checkEmpty(email)) {
         throw new Error("Email cannot be empty.");
-      if (!checkEmail.checkFormat(email))
+      }
+      if (!checkEmail.checkFormat(email)) {
         throw new Error("Invalid email format.");
+      }
 
       setError("");
 
-      const response = await fetch("https://localhost:3000/api/users/login", {
+      const response = await fetch(`${apiUrl}/api/users/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -35,16 +47,32 @@ const LogIn = () => {
         },
         body: JSON.stringify({ email, password }),
       });
-      if (response.status === 401) {
-        throw Error(
-          "Invalid credentials, please check your email and password."
+
+      if (!response.ok) {
+        if (response.status === 401) {
+          throw new Error(
+            "Invalid credentials, please check your email and password."
+          );
+        }
+        throw new Error(
+          "An error occurred while logging in. Please try again."
         );
       }
-      const token = await response.json();
+
+      const token = await response.text();
+
+      if (!token) {
+        throw new Error("No token received from the server.");
+      }
+
       localStorage.setItem("token", token);
+      console.log("Login successful!");
+
+      // Navigate to the home page without reloading
+      navigate("/");
     } catch (error: any) {
-      console.error("Invalid mail format");
-      setError(`Invalid mail format: ${error}`);
+      console.error(error.message);
+      setError(error.message);
     }
   };
 

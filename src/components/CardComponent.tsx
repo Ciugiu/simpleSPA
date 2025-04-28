@@ -1,4 +1,8 @@
+// Asstes imports
 import PlaceholderImage from "../assets/300x200.jpg";
+
+// React imports
+import { useNavigate } from "react-router-dom";
 
 interface CardComponentProps {
   title: string;
@@ -13,6 +17,8 @@ const cardComponent = ({
   price,
   imageUrl,
 }: CardComponentProps) => {
+  const navigate = useNavigate();
+
   return (
     <article className="col">
       <div className="card shadow-sm">
@@ -31,6 +37,7 @@ const cardComponent = ({
               <button
                 type="button"
                 className="btn btn-sm btn-outline-secondary"
+                onClick={() => navigate("/update-product")}
               >
                 View
               </button>

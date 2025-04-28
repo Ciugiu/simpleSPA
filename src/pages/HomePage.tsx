@@ -1,6 +1,11 @@
-import { useEffect, useState } from "react";
-import { fetchProducts } from "../utils/fetchProducts";
+// Compoenent imports
 import CardComponent from "../components/CardComponent";
+
+// React imports
+import { useEffect, useState } from "react";
+
+// Utils imports
+import { fetchProducts } from "../utils/fetchProducts";
 
 const HomePage = () => {
   const [product, setProducts] = useState([]);

@@ -26,7 +26,10 @@ const App = () => {
             <Route path="/login" element={<LogInPage />} />
             <Route path="/signup" element={<SignUpPage />} />
             <Route path="/create-product" element={<CreateProductPage />} />
-            <Route path="/update-product" element={<UpdateProductPage />} />
+            <Route
+              path="/update-product/:productId"
+              element={<UpdateProductPage />}
+            />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </main>

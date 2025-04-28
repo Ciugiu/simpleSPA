@@ -9,10 +9,8 @@ import { apiUrl } from "../utils/apiUrl";
 
 // React imports
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 const LogIn = () => {
-  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -66,7 +64,7 @@ const LogIn = () => {
       localStorage.setItem("token", token);
       // console.log("Login successful!");
 
-      navigate("/");
+      window.location.href = "/";
     } catch (error: any) {
       console.error(error.message);
       setError(error.message);

@@ -1,6 +1,7 @@
-const uri = "http://localhost:3000/api/products";
+import { apiUrl } from "./apiUrl";
 
 export const fetchProducts = async () => {
+  const uri = `${apiUrl}/api/products`;
   try {
     const response = await fetch(uri);
     if (!response.ok) {

@@ -68,7 +68,6 @@ const LogIn = () => {
       localStorage.setItem("token", token);
       console.log("Login successful!");
 
-      // Navigate to the home page without reloading
       navigate("/");
     } catch (error: any) {
       console.error(error.message);

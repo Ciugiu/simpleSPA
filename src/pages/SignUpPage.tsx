@@ -1,9 +1,19 @@
+// Component imports
 import LabelComp from "../components/LabelComp";
 import InputForm from "../components/InputForm";
+import AlertComp from "../components/AlertComp";
+
+// React imports
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+// Environment variable import
+const apiUrl = import.meta.env.VITE_API_URL;
 
 const SignUp = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState<Record<string, string | File>>({});
+  const [error, setError] = useState("");
 
   const handleChange = (field: string) => (value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
@@ -20,14 +30,44 @@ const SignUp = () => {
     { name: "email", label: "Email", type: "email", id: "emailInput" },
     { name: "password", label: "Password", type: "password", id: "pwdInput" },
     { name: "role", label: "Role", type: "text", id: "roleInput" },
-    { name: "image", label: "Avatar", type: "text", id: "imageInput" },
+    { name: "imageUrl", label: "Avatar", type: "text", id: "imageInput" },
   ];
 
-  const handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
-    // Optional: Add validation logic here if needed
-    console.log("Form submitted:", formData);
+    try {
+      console.log("Form submitted:", formData);
+
+      setError("");
+
+      const response = await fetch(`${apiUrl}/api/users/signup`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        if (response.status === 400) {
+          throw new Error("Invalid input, please check your data.");
+        }
+        throw new Error(
+          "An error occurred while signing up. Please try again."
+        );
+      }
+
+      if (response.status === 201) {
+        const data = await response.json();
+        console.log("User signed up successfully:", data);
+        navigate("/login");
+      }
+    } catch (error: any) {
+      console.error(error.message);
+      setError(error.message);
+    }
   };
 
   return (
@@ -49,6 +89,7 @@ const SignUp = () => {
           />
         </div>
       ))}
+      {error && <AlertComp alertType="alert-danger" text={error} />}
       <div>
         <button className="btn btn-primary" type="submit">
           Submit

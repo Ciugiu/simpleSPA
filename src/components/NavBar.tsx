@@ -10,6 +10,11 @@ const NavBar = () => {
           E-commerce
         </Link>
         <div className="col-md-3 text-end">
+          {token && (
+            <Link className="btn btn-outline-dark me-2" to="/create-product">
+              Create Product
+            </Link>
+          )}
           {!token && (
             <Link className="btn btn-outline-dark me-2" to="/login">
               Login

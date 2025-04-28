@@ -5,7 +5,8 @@ import HomePage from "./pages/HomePage";
 import LogInPage from "./pages/LogInPage";
 import SignUpPage from "./pages/SignUpPage";
 import NotFoundPage from "./pages/NotFoundPage";
-import CreateProduct from "./pages/CreateProduct";
+import CreateProductPage from "./pages/CreateProductPage";
+import UpdateProductPage from "./pages/UpdateProductPage";
 
 // Components
 import NavBar from "./components/NavBar";
@@ -24,7 +25,8 @@ const App = () => {
             <Route path="/" element={<HomePage />} />
             <Route path="/login" element={<LogInPage />} />
             <Route path="/signup" element={<SignUpPage />} />
-            <Route path="/create-product" element={<CreateProduct />} />
+            <Route path="/create-product" element={<CreateProductPage />} />
+            <Route path="/update-product" element={<UpdateProductPage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </main>

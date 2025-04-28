@@ -64,7 +64,7 @@ const LogIn = () => {
       }
 
       localStorage.setItem("token", token);
-      console.log("Login successful!");
+      // console.log("Login successful!");
 
       navigate("/");
     } catch (error: any) {

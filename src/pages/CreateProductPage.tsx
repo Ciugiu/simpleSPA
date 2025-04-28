@@ -37,7 +37,7 @@ const CreateProduct = () => {
     event.preventDefault();
 
     try {
-      console.log("Form submitted:", formData);
+      // console.log("Form submitted:", formData);
 
       setError("");
 

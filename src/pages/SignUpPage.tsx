@@ -37,7 +37,7 @@ const SignUp = () => {
     event.preventDefault();
 
     try {
-      console.log("Form submitted:", formData);
+      // console.log("Form submitted:", formData);
 
       setError("");
 
@@ -60,8 +60,8 @@ const SignUp = () => {
       }
 
       if (response.status === 201) {
-        const data = await response.json();
-        console.log("User signed up successfully:", data);
+        // const data = await response.json();
+        // console.log("User signed up successfully:", data);
         navigate("/login");
       }
     } catch (error: any) {

@@ -18,7 +18,6 @@ const UpdateProductPage = () => {
   const [productCategory, setProductCategory] = useState("");
   const [productStock, setProductStock] = useState("");
   const [error, setError] = useState("");
-  const [formData, setFormData] = useState<Record<string, string | File>>({});
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
 

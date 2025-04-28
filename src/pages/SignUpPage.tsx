@@ -3,12 +3,12 @@ import LabelComp from "../components/LabelComp";
 import InputForm from "../components/InputForm";
 import AlertComp from "../components/AlertComp";
 
+// Utils imports
+import { apiUrl } from "../utils/apiUrl";
+
 // React imports
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
-// Environment variable import
-import { apiUrl } from "../utils/apiUrl";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -89,8 +89,10 @@ const SignUp = () => {
           />
         </div>
       ))}
-      {error && <AlertComp alertType="alert-danger" text={error} />}
       <div>
+        <br />
+        {error && <AlertComp alertType="alert-danger" text={error} />}
+        <br />
         <button className="btn btn-primary" type="submit">
           Submit
         </button>

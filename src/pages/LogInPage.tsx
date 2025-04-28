@@ -5,13 +5,11 @@ import AlertComp from "../components/AlertComp";
 
 // Utility imports
 import { checkEmail } from "../utils/checkFormErrors";
+import { apiUrl } from "../utils/apiUrl";
 
 // React imports
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
-// Environment variable import
-import { apiUrl } from "../utils/apiUrl";
 
 const LogIn = () => {
   const navigate = useNavigate();
@@ -102,7 +100,9 @@ const LogIn = () => {
           ariaDescribe="passwordHelp"
         />
       </div>
+      <br />
       {error && <AlertComp alertType="alert-danger" text={error} />}
+      <br />
       <div>
         <button className="btn btn-primary" onClick={handleSubmit}>
           Submit

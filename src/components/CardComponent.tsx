@@ -9,6 +9,7 @@ interface CardComponentProps {
   description: string;
   price: number;
   imageUrl: string;
+  productId?: string;
 }
 
 const cardComponent = ({
@@ -16,6 +17,7 @@ const cardComponent = ({
   description,
   price,
   imageUrl,
+  productId,
 }: CardComponentProps) => {
   const navigate = useNavigate();
 
@@ -37,7 +39,7 @@ const cardComponent = ({
               <button
                 type="button"
                 className="btn btn-sm btn-outline-secondary"
-                onClick={() => navigate("/update-product")}
+                onClick={() => navigate(`/update-product/${productId}`)}
               >
                 View
               </button>

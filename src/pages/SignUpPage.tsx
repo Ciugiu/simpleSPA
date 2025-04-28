@@ -8,7 +8,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 // Environment variable import
-const apiUrl = import.meta.env.VITE_API_URL;
+import { apiUrl } from "../utils/apiUrl";
 
 const SignUp = () => {
   const navigate = useNavigate();
